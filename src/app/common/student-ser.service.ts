@@ -7,8 +7,8 @@ import { environment } from 'src/environments/environment';
 })
 export class StudentSerService {
 
-  studentApiUrl = "nodejsStudentAPI/v1/studentDetails"
-  // studentApiUrl = environment.baseURL + "studentDetails"
+  // studentApiUrl = "nodejsStudentAPI/v1/studentDetails"
+  studentApiUrl = environment.baseURL + "studentDetails"
   constructor(
     private httpClient : HttpClient
   ) { }

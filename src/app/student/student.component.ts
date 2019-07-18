@@ -8,6 +8,10 @@ import { StudentSerService } from '../common/student-ser.service';
 })
 export class StudentComponent implements OnInit {
 
+
+  students :any = []
+  individualStudent : any = {}
+  isIndividualStudentObjEmpty = true
   constructor(
     private studentAPI : StudentSerService
   ) { }
@@ -19,11 +23,17 @@ export class StudentComponent implements OnInit {
     this.studentAPI.getAllStudents()
       .subscribe(
         res => {
-          console.log(res)
+          this.students = res;
         }, err => {
           console.log(err)
         }
       )
   }
 
+  studentFullDetail(studentDetail){
+    this.isIndividualStudentObjEmpty = false
+    this.individualStudent = studentDetail
+    console.log("Full Detail",this.individualStudent)
+
+  }
 }

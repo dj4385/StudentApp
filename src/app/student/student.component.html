@@ -1,9 +1,53 @@
 <div class="row mt-5">
-  <div class="col-lg 12">
+  <div class="col-lg-12">
     <div class="card">
       <div class="card-header cardHeaderBg">Student Form</div>
       <div class="card-body">
         <h1>Form</h1>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mt-2">
+  <div class="col-lg-4">
+    <div class="card">
+      <div class="card-header">All Students</div>
+      <div class="card-body">
+          <div class="row border m-2 pt-2" *ngFor="let student of students" (click)="studentFullDetail(student)">
+            <div class="col-lg-4">
+              <img src="../../assets/images/avtar.jpg" alt="" class="img-fluid">
+            </div>
+            <div class="col-lg-8">
+              <h3>{{student.name}}</h3>
+              <h6>{{student.dob}}</h6>
+              <h6>{{student.course}}</h6>
+              <h6>{{student.address}}</h6>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="col-lg-8">
+    <div class="card">
+      <div class="card-header">View Full Detail</div>
+      <div class="card-body">
+        <div class="row" *ngIf="isIndividualStudentObjEmpty === false">
+          <div class="col-lg-4">
+              <img src="../../assets/images/avtar.jpg" alt="" class="img-fluid imgFullPage">
+          </div>
+          <div class="col-lg-8">
+            <h1> <i class="fa fa-user-o" aria-hidden="true"></i> {{individualStudent.name}} </h1>
+            <p> <i class="fa fa-calendar" aria-hidden="true"></i> {{individualStudent.dob}} </p>
+            <p> <i class="fa fa-envelope" aria-hidden="true"></i> {{individualStudent.email}} </p>
+            <p> <i class="fa fa-mobile" aria-hidden="true"></i> {{individualStudent.contactNo}} </p>
+            <p> <i class="fa fa-certificate" aria-hidden="true"></i> {{individualStudent.course}} </p>
+            <p> <i class="fa fa-clock-o" aria-hidden="true"></i> {{individualStudent.courseDuration}} </p>
+          </div>
+          <div class="col-lg-12 d-flex justify-content-end">
+            <button class="btn btn-sm btn-dark"> <i class="fa fa-pencil"></i> </button>
+            <button class="btn btn-sm btn-danger ml-2"> <i class="fa fa-trash"></i> </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
