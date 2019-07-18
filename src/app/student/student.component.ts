@@ -8,10 +8,16 @@ import { StudentSerService } from '../common/student-ser.service';
 })
 export class StudentComponent implements OnInit {
 
+  gender = ['Male','Female', 'Other']
+  courses = ['MCA','MBA','BBA','BCA','B.tech', 'M.tech']
+  courseDur = ['2 Year', '3 Year', '5 Year']
 
   students :any = []
   individualStudent : any = {}
   isIndividualStudentObjEmpty = true
+
+
+
   constructor(
     private studentAPI : StudentSerService
   ) { }
