@@ -4,3 +4,6 @@
 .imgFullPage{
     height: 250px;
 }
+.expandTextAreaFalse{
+    resize: none;
+}

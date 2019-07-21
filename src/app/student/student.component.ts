@@ -12,7 +12,7 @@ export class StudentComponent implements OnInit {
   _courses = ['MCA','MBA','BBA','BCA','B.tech', 'M.tech']
   _courseDur = [2,3,5]
 
-  studentObj = {
+  studentObj : any = {
     name : "",
     gender : "",
     dob : "",
@@ -28,7 +28,7 @@ export class StudentComponent implements OnInit {
   students :any = []
   individualStudent : any = {}
   isIndividualStudentObjEmpty = true
-
+  isEdit = false
 
   constructor(
     private studentAPI : StudentSerService
@@ -83,4 +83,42 @@ export class StudentComponent implements OnInit {
     }
   }
 
+  deleteStudent(studentID){
+    this.studentAPI.deleteStudentDetail(studentID)
+      .subscribe(
+        res=>{
+          if(res){
+            alert("data removed successfully")
+          }
+        },
+        err=>{
+          console.log(err)
+        }
+      )
+  }
+
+  editStudentInfo(individualStudent){
+    this.isEdit = true
+    this.studentObj = individualStudent
+  }
+  cancel(){
+    this.isEdit = false
+    this.reset()
+  }
+  studID=""
+  updateStudentInfo(){
+    this.studID = this.studentObj._id
+    this.studentAPI.editStudentDetail(this.studID,this.studentObj)
+      .subscribe(
+        res=>{
+          if(res){
+            alert('Student Detail Updated Successfully')
+            this.reset()
+          }
+        },
+        err=>{
+          console.log(err)
+        }
+      )
+  }
 }

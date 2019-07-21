@@ -20,4 +20,10 @@ export class StudentSerService {
   createStudentDetail(student){
     return this.httpClient.post(this.studentApiUrl + "student",student)
   }
+  deleteStudentDetail(studentID){
+    return this.httpClient.delete(this.studentApiUrl + "deleteStudent/"+studentID)
+  }
+  editStudentDetail(studentID,studentData){
+    return this.httpClient.put(this.studentApiUrl + "updateStudentDetail/"+studentID, studentData)
+  }
 }

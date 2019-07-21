@@ -7,33 +7,34 @@
           <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-6">
               <div class="form-group">
-                <label for="">Name</label>
-                <input type="text" class="form-control" name="sName" [(ngModel)]="studentObj.name">
+                <label for="">Name</label> <span class="text-danger" *ngIf="Sname.invalid && (Sname.dirty || Sname.touched)">Invalid*</span>
+                <input type="text" class="form-control" name="sName" [(ngModel)]="studentObj.name" #Sname="ngModel" required>
               </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6">
               <div class="form-group">
-                <label for="">Date of Birth</label>
-                <input type="date" class="form-control" name="dateofBirth" [(ngModel)]="studentObj.dob">
+                <label for="">Date of Birth</label> <span class="text-danger" *ngIf="dob.invalid && (dob.dirty || dob.touched)">Invalid*</span>
+                <input type="date" class="form-control" name="dateofBirth" [(ngModel)]="studentObj.dob" #dob="ngModel" required>
               </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6">
-              <div class="form-group">
-                <label for="">Email Address</label>
-                <input type="email" class="form-control" name="emailID" [(ngModel)]="studentObj.email">
+              <div class="form-group"> 
+                <label for="">Email Address</label> <span class="text-danger" *ngIf="mail.invalid && (mail.dirty || mail.touched)">Invalid*</span>
+                <input type="email" class="form-control" name="emailID" [(ngModel)]="studentObj.email" email #mail="ngModel" required>
               </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6">
-              <div class="form-group">
-                <label for="">Contact Number</label>
-                <input type="number" class="form-control" name="phoneNo" [(ngModel)]="studentObj.contactNo">
+              <div class="form-group"> 
+                <label for="">Contact Number</label> <span class="text-danger" *ngIf="contactno.invalid && (contactno.dirty || contactno.touched)">Invalid*</span>
+                <input type="number" class="form-control" name="phoneNo" [(ngModel)]="studentObj.contactNo" #contactno="ngModel" required>
               </div>
             </div>
           </div>
           <div class="row">
               <div class="col-lg-2 col-md-3 col-sm-3">
                 <div class="form-group">
-                  <label for="">Gender</label>
+                  <label for="">Gender</label> 
+                  <!-- <span class="text-danger" *ngIf="_Gender.invalid && (_Gender.dirty || _Gender.touched)">Invalid*</span> #_Gender="ngModel" required-->
                   <select class="form-control" name="Gender" [(ngModel)]="studentObj.gender">
                     <option *ngFor="let gen of _gender" > {{gen}} </option>
                   </select>
@@ -41,15 +42,17 @@
               </div>
               <div class="col-lg-2 col-md-3 col-sm-3">
                 <div class="form-group">
-                    <label for="">Course</label>
-                    <select class="form-control" name="course" [(ngModel)]="studentObj.course">
+                    <label for="">Course</label> 
+                    <!-- <span class="text-danger" *ngIf="Course.invalid && (Course.dirty || Course.touched)">Invalid*</span> #Course="ngModel" required-->
+                    <select class="form-control" name="course" [(ngModel)]="studentObj.course" >
                       <option *ngFor="let course of _courses" > {{course}} </option>
                     </select>
                 </div>
               </div>
               <div class="col-lg-2 col-md-6 col-sm-6">
                 <div class="form-group">
-                    <label for="">Course Duration</label>
+                    <label for="">Course Duration</label> 
+                    <!-- <span class="text-danger" *ngIf="CourseDur.invalid && (CourseDur.dirty || CourseDur.touched)">Invalid*</span> #courseDur="ngModel" required-->
                     <select class="form-control" name="cDuration" [(ngModel)]="studentObj.courseDuration">
                       <option *ngFor="let cD of _courseDur" > {{ cD }} </option>
                     </select>
@@ -57,13 +60,17 @@
               </div>
               <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="form-group">
-                    <label for="">Address</label>
-                    <textarea cols="30" rows="2" class="form-control" name="add" [(ngModel)]="studentObj.address"></textarea>
+                    <label for="">Address</label> <span class="text-danger" *ngIf="add.invalid && (add.dirty || add.touched)">Invalid*</span>
+                    <textarea cols="30" rows="2" class="form-control expandTextAreaFalse" name="add" [(ngModel)]="studentObj.address" #add="ngModel" required></textarea>
                 </div>
               </div>
           </div>
-          <div class="row d-flex justify-content-end">
-            <button class="btn btn-sm btn-success" (click)="saveStudentDetails()">Save Student Detail</button>
+          <div class="row d-flex justify-content-end" *ngIf="isEdit === false">
+            <button class="btn btn-sm btn-success" [disabled]="studentForm.invalid" (click)="saveStudentDetails()">Save Student Detail</button>
+          </div>
+          <div class="row d-flex justify-content-end" *ngIf="isEdit === true">
+            <button class="btn btn-sm btn-success" (click)="updateStudentInfo(_id)">Update</button>
+            <button class="btn btn-sm btn-danger ml-2" (click)="cancel()">Cancel</button>
           </div>
         </form>
       </div>
@@ -106,8 +113,8 @@
             <p> <i class="fa fa-clock-o" aria-hidden="true"></i> {{individualStudent.courseDuration}} </p>
           </div>
           <div class="col-lg-12 d-flex justify-content-end">
-            <button class="btn btn-sm btn-dark"> <i class="fa fa-pencil"></i> </button>
-            <button class="btn btn-sm btn-danger ml-2"> <i class="fa fa-trash"></i> </button>
+            <button class="btn btn-sm btn-dark" (click)="editStudentInfo(individualStudent)"> <i class="fa fa-pencil"></i> </button>
+            <button class="btn btn-sm btn-danger ml-2" (click)="deleteStudent(individualStudent._id)"> <i class="fa fa-trash"></i> </button>
           </div>
         </div>
       </div>
