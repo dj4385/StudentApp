@@ -8,14 +8,26 @@ import { StudentSerService } from '../common/student-ser.service';
 })
 export class StudentComponent implements OnInit {
 
-  gender = ['Male','Female', 'Other']
-  courses = ['MCA','MBA','BBA','BCA','B.tech', 'M.tech']
-  courseDur = ['2 Year', '3 Year', '5 Year']
+  _gender = ['Male','Female', 'Other']
+  _courses = ['MCA','MBA','BBA','BCA','B.tech', 'M.tech']
+  _courseDur = [2,3,5]
 
+  studentObj = {
+    name : "",
+    gender : "",
+    dob : "",
+    image : "",
+    email : "",
+    contactNo : "",
+    address : "",
+    course : "",
+    courseDuration : ""
+  }
+
+  
   students :any = []
   individualStudent : any = {}
   isIndividualStudentObjEmpty = true
-
 
 
   constructor(
@@ -25,6 +37,7 @@ export class StudentComponent implements OnInit {
   ngOnInit() {
     this.getAllStudentDetails()
   }
+
   getAllStudentDetails(){
     this.studentAPI.getAllStudents()
       .subscribe(
@@ -42,4 +55,32 @@ export class StudentComponent implements OnInit {
     console.log("Full Detail",this.individualStudent)
 
   }
+
+  saveStudentDetails(){
+    this.studentAPI.createStudentDetail(this.studentObj)
+      .subscribe(
+        res => {
+          console.log("Response",res);
+          this.reset();
+        },
+        err => {
+          console.log(err)
+        }
+      )
+  }
+
+  reset(){
+    this.studentObj = {
+      name : "",
+      gender : "",
+      dob : "",
+      image : "",
+      email : "",
+      contactNo : "",
+      address : "",
+      course : "",
+      courseDuration : ""
+    }
+  }
+
 }

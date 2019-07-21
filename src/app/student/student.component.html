@@ -8,25 +8,25 @@
             <div class="col-lg-3 col-md-3 col-sm-6">
               <div class="form-group">
                 <label for="">Name</label>
-                <input type="text" class="form-control" >
+                <input type="text" class="form-control" name="sName" [(ngModel)]="studentObj.name">
               </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6">
               <div class="form-group">
                 <label for="">Date of Birth</label>
-                <input type="date" class="form-control" >
+                <input type="date" class="form-control" name="dateofBirth" [(ngModel)]="studentObj.dob">
               </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6">
               <div class="form-group">
                 <label for="">Email Address</label>
-                <input type="email" class="form-control" >
+                <input type="email" class="form-control" name="emailID" [(ngModel)]="studentObj.email">
               </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6">
               <div class="form-group">
                 <label for="">Contact Number</label>
-                <input type="number" class="form-control" >
+                <input type="number" class="form-control" name="phoneNo" [(ngModel)]="studentObj.contactNo">
               </div>
             </div>
           </div>
@@ -34,36 +34,36 @@
               <div class="col-lg-2 col-md-3 col-sm-3">
                 <div class="form-group">
                   <label for="">Gender</label>
-                  <select name="" id="" class="form-control">
-                    <option *ngFor="let gen of gender" value=""> {{gen}} </option>
+                  <select class="form-control" name="Gender" [(ngModel)]="studentObj.gender">
+                    <option *ngFor="let gen of _gender" > {{gen}} </option>
                   </select>
                 </div>
               </div>
               <div class="col-lg-2 col-md-3 col-sm-3">
                 <div class="form-group">
                     <label for="">Course</label>
-                    <select name="" id="" class="form-control">
-                      <option *ngFor="let course of courses" value=""> {{course}} </option>
+                    <select class="form-control" name="course" [(ngModel)]="studentObj.course">
+                      <option *ngFor="let course of _courses" > {{course}} </option>
                     </select>
                 </div>
               </div>
               <div class="col-lg-2 col-md-6 col-sm-6">
                 <div class="form-group">
                     <label for="">Course Duration</label>
-                    <select name="" id="" class="form-control">
-                      <option *ngFor="let cD of courseDur" value=""> {{ cD }} </option>
+                    <select class="form-control" name="cDuration" [(ngModel)]="studentObj.courseDuration">
+                      <option *ngFor="let cD of _courseDur" > {{ cD }} </option>
                     </select>
                 </div>
               </div>
               <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="form-group">
                     <label for="">Address</label>
-                    <textarea name="" id="" cols="30" rows="2" class="form-control"></textarea>
+                    <textarea cols="30" rows="2" class="form-control" name="add" [(ngModel)]="studentObj.address"></textarea>
                 </div>
               </div>
           </div>
           <div class="row d-flex justify-content-end">
-            <button class="btn btn-sm btn-success">Save Student Detail</button>
+            <button class="btn btn-sm btn-success" (click)="saveStudentDetails()">Save Student Detail</button>
           </div>
         </form>
       </div>
@@ -71,7 +71,7 @@
   </div>
 </div>
 <div class="row mt-2">
-  <div class="col-lg-4 col-md-4 col-sm-4">
+  <div class="col-lg-4 col-md-4">
     <div class="card">
       <div class="card-header">All Students</div>
       <div class="card-body">
@@ -89,7 +89,7 @@
         </div>
     </div>
   </div>
-  <div class="col-lg-8 col-md-8 col-sm-8">
+  <div class="col-lg-8">
     <div class="card">
       <div class="card-header">View Full Detail</div>
       <div class="card-body">
